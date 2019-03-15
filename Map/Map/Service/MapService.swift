@@ -8,11 +8,15 @@
 
 import Foundation
 
+protocol  MapServiceProtocol {
+    func fetchAllVehicles(completion: @escaping ([Vehicle]?,URLResponse? , Error?) -> ())
+     func fetchVehilceDetails(vechileID :Int,  completion: @escaping (Vehicle?,URLResponse? , Error?) -> ())
+    
+}
 
-class MapService: NSObject {
+class MapService: MapServiceProtocol {
     
-    static let shared = MapService()
-    
+
     // Api call to fetch all vehicles details
     func fetchAllVehicles(completion: @escaping ([Vehicle]?,URLResponse? , Error?) -> ()) {
         
@@ -22,7 +26,7 @@ class MapService: NSObject {
         sessionManager.dataTask(with: request) { (data, response, error) in
             if let err = error {
                 completion(nil,response, err)
-                print("Failed to fetch courses:", err)
+                print("Failed to fetch vehicles:", err)
                 return
             }
             
@@ -30,9 +34,9 @@ class MapService: NSObject {
             
             guard let data = data else { return }
             do {
-                let courses = try JSONDecoder().decode([Vehicle].self, from: data)
+                let vehicles = try JSONDecoder().decode([Vehicle].self, from: data)
                 DispatchQueue.main.async {
-                    completion(courses, response, nil)
+                    completion(vehicles, response, nil)
                 }
             } catch let jsonErr {
                 print("Failed to decode:", jsonErr)
@@ -41,6 +45,7 @@ class MapService: NSObject {
         
     }
     
+    // Api call to fetch single vehicle details
     func fetchVehilceDetails(vechileID :Int,  completion: @escaping (Vehicle?,URLResponse? , Error?) -> ()) {
         
         let apiUrl = Constants.baseUrl + "/vehicles/\(vechileID)"
@@ -49,7 +54,7 @@ class MapService: NSObject {
         sessionManager.dataTask(with: request) { (data, response, error) in
             if let err = error {
                 completion(nil,response,  err)
-                print("Failed to fetch courses:", err)
+                print("Failed to fetch vehicle:", err)
                 return
             }
             
@@ -57,9 +62,9 @@ class MapService: NSObject {
             
             guard let data = data else { return }
             do {
-                let courses = try JSONDecoder().decode(Vehicle.self, from: data)
+                let vehicle = try JSONDecoder().decode(Vehicle.self, from: data)
                 DispatchQueue.main.async {
-                    completion(courses,response, nil)
+                    completion(vehicle,response, nil)
                 }
             } catch let jsonErr {
                 print("Failed to decode:", jsonErr)

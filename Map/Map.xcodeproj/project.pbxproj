@@ -12,7 +12,7 @@
 		F53F2F26223A5328009B8FEF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F53F2F24223A5328009B8FEF /* Main.storyboard */; };
 		F53F2F28223A532A009B8FEF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F53F2F27223A532A009B8FEF /* Assets.xcassets */; };
 		F53F2F2B223A532A009B8FEF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F53F2F29223A532A009B8FEF /* LaunchScreen.storyboard */; };
-		F53F2F36223A532A009B8FEF /* MapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53F2F35223A532A009B8FEF /* MapTests.swift */; };
+		F53F2F36223A532A009B8FEF /* MapApiServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53F2F35223A532A009B8FEF /* MapApiServiceTests.swift */; };
 		F53F2F46223A5515009B8FEF /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53F2F45223A5515009B8FEF /* Vehicle.swift */; };
 		F53F2F58223A569F009B8FEF /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53F2F57223A569F009B8FEF /* Reachability.swift */; };
 		F53F2F60223A5A75009B8FEF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53F2F5F223A5A75009B8FEF /* Constants.swift */; };
@@ -20,6 +20,7 @@
 		F53F2F77223A7611009B8FEF /* VehicleDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F53F2F75223A7611009B8FEF /* VehicleDetailView.xib */; };
 		F53F2F78223A7611009B8FEF /* VehicleDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53F2F76223A7611009B8FEF /* VehicleDetailView.swift */; };
 		F53F2F82223B38AF009B8FEF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53F2F81223B38AF009B8FEF /* Extensions.swift */; };
+		F5BE4949223B87210056D775 /* Sample.json in Resources */ = {isa = PBXBuildFile; fileRef = F5BE4948223B87210056D775 /* Sample.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,7 +42,7 @@
 		F53F2F2A223A532A009B8FEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F53F2F2C223A532A009B8FEF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F53F2F31223A532A009B8FEF /* MapTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MapTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F53F2F35223A532A009B8FEF /* MapTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTests.swift; sourceTree = "<group>"; };
+		F53F2F35223A532A009B8FEF /* MapApiServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapApiServiceTests.swift; sourceTree = "<group>"; };
 		F53F2F37223A532B009B8FEF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F53F2F45223A5515009B8FEF /* Vehicle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
 		F53F2F57223A569F009B8FEF /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
@@ -50,6 +51,7 @@
 		F53F2F75223A7611009B8FEF /* VehicleDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VehicleDetailView.xib; sourceTree = "<group>"; };
 		F53F2F76223A7611009B8FEF /* VehicleDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleDetailView.swift; sourceTree = "<group>"; };
 		F53F2F81223B38AF009B8FEF /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		F5BE4948223B87210056D775 /* Sample.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Sample.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,7 +108,8 @@
 		F53F2F34223A532A009B8FEF /* MapTests */ = {
 			isa = PBXGroup;
 			children = (
-				F53F2F35223A532A009B8FEF /* MapTests.swift */,
+				F53F2F35223A532A009B8FEF /* MapApiServiceTests.swift */,
+				F5BE4948223B87210056D775 /* Sample.json */,
 				F53F2F37223A532B009B8FEF /* Info.plist */,
 			);
 			path = MapTests;
@@ -273,6 +276,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5BE4949223B87210056D775 /* Sample.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,7 +302,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F53F2F36223A532A009B8FEF /* MapTests.swift in Sources */,
+				F53F2F36223A532A009B8FEF /* MapApiServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

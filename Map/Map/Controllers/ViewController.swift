@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     // MARK: - Properties
     let activityIndicator = UIActivityIndicatorView(style: .gray)
     var selectedAnnotation : VehicleAnnotation?
+    let apiService: MapServiceProtocol = MapService()
     
     // MARK: - Outlets
     @IBOutlet weak var mapView: MKMapView!
@@ -73,7 +74,7 @@ class ViewController: UIViewController {
     fileprivate func fetchData() {
         showActivityIndicator()
         
-        MapService.shared.fetchAllVehicles { (vehicles, response ,error) in
+        apiService.fetchAllVehicles { (vehicles, response ,error) in
             self.hideActivityIndicator()
            
             guard let vehicles = vehicles,
@@ -92,7 +93,7 @@ class ViewController: UIViewController {
     }
     func fetchVehicleDetails(selectedVehicle : Vehicle,completion : @escaping (_ result: Vehicle)->()) {
         showActivityIndicator()
-        MapService.shared.fetchVehilceDetails(vechileID: selectedVehicle.id) { (vehicle,response, error) in
+        apiService.fetchVehilceDetails(vechileID: selectedVehicle.id) { (vehicle,response, error) in
              self.hideActivityIndicator()
              guard let vehicle = vehicle,
                 error == nil else {
@@ -105,6 +106,8 @@ class ViewController: UIViewController {
         }
         
     }
+    
+    
 }
 
 
