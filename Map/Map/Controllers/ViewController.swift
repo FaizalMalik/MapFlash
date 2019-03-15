@@ -46,6 +46,28 @@ class ViewController: UIViewController {
     }
     
     
+    // MARK: - Popup View Method
+    
+    private  func removePopUpView(of annotation : VehicleAnnotation){
+    DispatchQueue.main.async {
+                let annotationView = self.mapView.view(for: annotation)
+                for subview in annotationView!.subviews
+                {
+                    subview.removeFromSuperview()
+                }
+            }
+        }
+    
+    private  func showPopUpView(on view : MKAnnotationView, of vehicle:Vehicle){
+        DispatchQueue.main.async {
+            let views = Bundle.main.loadNibNamed(VehicleDetailView.reuseIdentifier, owner: nil, options: nil)
+            let popUpView = views?[0] as! VehicleDetailView
+            popUpView.vehicle = vehicle
+            popUpView.center = CGPoint(x: view.bounds.size.width / 2, y: -popUpView.bounds.size.height*0.52)
+            view.addSubview(popUpView)
+        }
+    }
+    
     
    // MARK: - Network Calls
     fileprivate func fetchData() {
@@ -105,7 +127,46 @@ extension ViewController : MKMapViewDelegate {
     }
     
     
-   
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        
+        guard let annotation = view.annotation as? VehicleAnnotation else {
+            // Return execution if its not at Vehicle Pin
+            return
+        }
+        
+        //For a successfull tap, change the region of map to center of tapped cordinate.
+        centerMap(on: annotation.coordinate)
+        
+        //If any vehicle vehicle details already displayed, then remove popup
+        if(selectedAnnotation != nil){
+            removePopUpView(of: selectedAnnotation!)
+        }
+        
+        
+        //checking case, if tapped pin is same as previous selected pin,
+        if selectedAnnotation == annotation {
+            
+            selectedAnnotation=nil
+            
+        }
+        else{
+            // Fetch the details of selected vehicle
+            
+            fetchVehicleDetails(selectedVehicle: annotation.vehicle) { (vehicle) in
+             
+                //Set selected vehicle
+                self.selectedAnnotation = annotation
+                
+                self.showPopUpView(on: view, of: vehicle)
+                
+            }
+        }
+        
+        //Deselecting the current annotation , to get call back on next click.
+        mapView.deselectAnnotation(annotation, animated: false)
+        
+    }
+    
     private func centerMap(on coordinate: CLLocationCoordinate2D) {
         
         let regionRadius: CLLocationDistance = 3000
