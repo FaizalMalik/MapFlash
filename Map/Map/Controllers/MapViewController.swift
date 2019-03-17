@@ -173,6 +173,7 @@ extension MapViewController : MKMapViewDelegate {
                 DispatchQueue.main.async {
                     let popupView =  self.loadPopupView()
                     popupView.center = CGPoint(x: view.bounds.size.width / 2, y: -popupView.bounds.size.height*0.52)
+                    popupView.vehicle = vehicle
                     view.addSubview(popupView)
                 }
                 
