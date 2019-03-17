@@ -79,12 +79,7 @@ class MapApiServiceTests: XCTestCase {
                promise.fulfill()
                 
                 
-            }){ (result) in
-//                self.hideActivityIndicator()
-                XCTFail("Failed to decode:")
-
-                
-            }
+            })
             
             
             

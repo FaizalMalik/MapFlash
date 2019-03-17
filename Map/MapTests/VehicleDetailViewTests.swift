@@ -30,7 +30,7 @@ class VehicleDetailViewTests: XCTestCase {
     }
 
     func testBindData() {
-        
+        //Expecting the Vehicles details pop up showing same data as we provide 
         // given
         let testBundle = Bundle(for: type(of: self))
         let path = testBundle.path(forResource: "Sample", ofType: "json")

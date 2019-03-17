@@ -10,7 +10,7 @@ import Foundation
 
 protocol  MapServiceProtocol {
     func fetchAllVehicles(completion: @escaping ([Vehicle]?,URLResponse? , Error?) -> ())
-     func fetchVehilceDetails(vechileID :Int,  completion: @escaping (Vehicle?,URLResponse? , Error?) -> (),failure: @escaping (Bool) -> ())
+     func fetchVehilceDetails(vechileID :Int,  completion: @escaping (Vehicle?,URLResponse? , Error?) -> ())
     
 }
 
@@ -40,13 +40,14 @@ class MapService: MapServiceProtocol {
                 }
             } catch let jsonErr {
                 print("Failed to decode:", jsonErr)
+                completion(nil,response, jsonErr)
             }
             }.resume()
         
     }
     
     // Api call to fetch single vehicle details
-    func fetchVehilceDetails(vechileID :Int,  completion: @escaping (Vehicle?,URLResponse? , Error?) -> (),failure: @escaping (Bool) -> ()) {
+    func fetchVehilceDetails(vechileID :Int,  completion: @escaping (Vehicle?,URLResponse? , Error?) -> ()) {
         
         let apiUrl = Constants.baseUrl + "/vehicles/\(vechileID)"
         let request = URLRequest(url: URL(string: apiUrl)!)
@@ -68,7 +69,7 @@ class MapService: MapServiceProtocol {
                 }
             } catch let jsonErr {
                 print("Failed to decode:", jsonErr)
-                failure(true)
+               completion(nil,response,  jsonErr)
             }
             }.resume()
         

@@ -63,6 +63,7 @@ class MapViewController: UIViewController {
     }
     
      func loadPopupView() -> VehicleDetailView {
+        
             let views = Bundle.main.loadNibNamed(VehicleDetailView.reuseIdentifier, owner: nil, options: nil)
             let popUpView = views?[0] as! VehicleDetailView
             return popUpView
@@ -94,22 +95,21 @@ class MapViewController: UIViewController {
         
         showActivityIndicator()
         
-        apiService.fetchVehilceDetails(vechileID: selectedVehicle.id, completion: { (vehicle, response, error) in
+        apiService.fetchVehilceDetails(vechileID: selectedVehicle.id) { (vehicle, response, error) in
             
             self.hideActivityIndicator()
             guard let vehicle = vehicle,
                 error == nil else {
                     print("Fetching details failed: \(String(describing: error))")
+                    failure(true)
                     return
             }
             completion(vehicle)
             
             
-        }) { (result) in
-             self.hideActivityIndicator()
-            failure(result)
-            
         }
+        
+        
     }
     
     

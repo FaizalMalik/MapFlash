@@ -140,6 +140,7 @@
 		F53F2F42223A5370009B8FEF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F5B04076223E59530054F18D /* Extentions */,
 				F53F2F80223B3568009B8FEF /* Helpers */,
 				F53F2F27223A532A009B8FEF /* Assets.xcassets */,
 			);
@@ -158,7 +159,6 @@
 			isa = PBXGroup;
 			children = (
 				F53F2F5F223A5A75009B8FEF /* Constants.swift */,
-				F53F2F81223B38AF009B8FEF /* Extensions.swift */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -185,6 +185,14 @@
 			children = (
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		F5B04076223E59530054F18D /* Extentions */ = {
+			isa = PBXGroup;
+			children = (
+				F53F2F81223B38AF009B8FEF /* Extensions.swift */,
+			);
+			path = Extentions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
