@@ -32,11 +32,9 @@ class MapTests: XCTestCase {
         // when
         
        let popupView =  controllerUnderTest.loadPopupView()
-        
-        
         //then
         XCTAssertNotNil(popupView.self)
-        
+        XCTAssertNotEqual(String(describing: popupView), "VehicleDetailView", "Wrong Identifier")
     }
     
     func testRemovePopupViewMethod(){
