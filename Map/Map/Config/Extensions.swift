@@ -25,3 +25,17 @@ extension UIView {
     }
     
 }
+extension UIViewController {
+    
+    func showAlert(title:String, message:String, okAction:@escaping ()-> Void)  {
+        let refreshAlert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        
+        refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+            okAction()
+        }))
+        
+        present(refreshAlert, animated: true, completion: nil)
+    }
+    
+    
+}

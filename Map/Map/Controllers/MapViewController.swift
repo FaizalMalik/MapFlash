@@ -49,24 +49,23 @@ class MapViewController: UIViewController {
     
     // MARK: - Popup View Method
     
-    private  func removePopUpView(of annotation : VehicleAnnotation){
-    DispatchQueue.main.async {
-                let annotationView = self.mapView.view(for: annotation)
-                for subview in annotationView!.subviews
-                {
-                    subview.removeFromSuperview()
-                }
+      func removePopUpView(of annotation : VehicleAnnotation){
+     DispatchQueue.main.async {
+        if let annotationView = self.mapView.view(for: annotation){
+            for subview in annotationView.subviews
+            {
+                subview.removeFromSuperview()
+                
             }
         }
+        }
+       
+    }
     
-    private  func showPopUpView(on view : MKAnnotationView, of vehicle:Vehicle){
-        DispatchQueue.main.async {
+     func loadPopupView() -> VehicleDetailView {
             let views = Bundle.main.loadNibNamed(VehicleDetailView.reuseIdentifier, owner: nil, options: nil)
             let popUpView = views?[0] as! VehicleDetailView
-            popUpView.vehicle = vehicle
-            popUpView.center = CGPoint(x: view.bounds.size.width / 2, y: -popUpView.bounds.size.height*0.52)
-            view.addSubview(popUpView)
-        }
+            return popUpView
     }
     
     
@@ -91,11 +90,14 @@ class MapViewController: UIViewController {
         
         
     }
-    func fetchVehicleDetails(selectedVehicle : Vehicle,completion : @escaping (_ result: Vehicle)->()) {
+    func fetchVehicleDetails(selectedVehicle : Vehicle,completion : @escaping (_ result: Vehicle)->(),failure : @escaping (_ result: Bool)->()) {
+        
         showActivityIndicator()
-        apiService.fetchVehilceDetails(vechileID: selectedVehicle.id) { (vehicle,response, error) in
-             self.hideActivityIndicator()
-             guard let vehicle = vehicle,
+        
+        apiService.fetchVehilceDetails(vechileID: selectedVehicle.id, completion: { (vehicle, response, error) in
+            
+            self.hideActivityIndicator()
+            guard let vehicle = vehicle,
                 error == nil else {
                     print("Fetching details failed: \(String(describing: error))")
                     return
@@ -103,8 +105,11 @@ class MapViewController: UIViewController {
             completion(vehicle)
             
             
+        }) { (result) in
+             self.hideActivityIndicator()
+            failure(result)
+            
         }
-        
     }
     
     
@@ -155,13 +160,21 @@ extension MapViewController : MKMapViewDelegate {
         else{
             // Fetch the details of selected vehicle
             
-            fetchVehicleDetails(selectedVehicle: annotation.vehicle) { (vehicle) in
-             
+            fetchVehicleDetails(selectedVehicle: annotation.vehicle, completion: { (vehicle) in
                 //Set selected vehicle
                 self.selectedAnnotation = annotation
                 
-                self.showPopUpView(on: view, of: vehicle)
+                DispatchQueue.main.async {
+                    let popupView =  self.loadPopupView()
+                    popupView.center = CGPoint(x: view.bounds.size.width / 2, y: -popupView.bounds.size.height*0.52)
+                    view.addSubview(popupView)
+                }
                 
+                
+            }) { (failure) in
+                DispatchQueue.main.async {
+                self.showAlert(title: "Failure", message: "Failed to load vehicle Details, Please try again", okAction: {})
+                }
             }
         }
         

@@ -76,10 +76,15 @@ class MapApiServiceTests: XCTestCase {
                 XCTAssertNotNil(vehicle,"Failed to parse vehicle Model")
                 XCTAssertEqual(selectedVehicle?.id, vehicle?.id, "vehicle")
 
-               
-                promise.fulfill()
+               promise.fulfill()
                 
-            })
+                
+            }){ (result) in
+//                self.hideActivityIndicator()
+                XCTFail("Failed to decode:")
+
+                
+            }
             
             
             
