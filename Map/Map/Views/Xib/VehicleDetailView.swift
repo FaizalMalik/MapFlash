@@ -22,6 +22,7 @@ class VehicleDetailView: UIView {
     
     // MARK: - Properties
    
+    
     var vehicle : Vehicle!{
         didSet{
             bindData()

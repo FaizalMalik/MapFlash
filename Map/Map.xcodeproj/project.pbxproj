@@ -20,6 +20,7 @@
 		F53F2F78223A7611009B8FEF /* VehicleDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53F2F76223A7611009B8FEF /* VehicleDetailView.swift */; };
 		F53F2F82223B38AF009B8FEF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53F2F81223B38AF009B8FEF /* Extensions.swift */; };
 		F55B8A95223E26A000839547 /* MapViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55B8A94223E26A000839547 /* MapViewControllerTests.swift */; };
+		F5B04075223E52B10054F18D /* VehicleDetailViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B04074223E52B10054F18D /* VehicleDetailViewTests.swift */; };
 		F5BE4949223B87210056D775 /* Sample.json in Resources */ = {isa = PBXBuildFile; fileRef = F5BE4948223B87210056D775 /* Sample.json */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +52,7 @@
 		F53F2F76223A7611009B8FEF /* VehicleDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleDetailView.swift; sourceTree = "<group>"; };
 		F53F2F81223B38AF009B8FEF /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		F55B8A94223E26A000839547 /* MapViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewControllerTests.swift; sourceTree = "<group>"; };
+		F5B04074223E52B10054F18D /* VehicleDetailViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleDetailViewTests.swift; sourceTree = "<group>"; };
 		F5BE4948223B87210056D775 /* Sample.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Sample.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -110,6 +112,7 @@
 			children = (
 				F53F2F35223A532A009B8FEF /* MapApiServiceTests.swift */,
 				F55B8A94223E26A000839547 /* MapViewControllerTests.swift */,
+				F5B04074223E52B10054F18D /* VehicleDetailViewTests.swift */,
 				F5BE4948223B87210056D775 /* Sample.json */,
 				F53F2F37223A532B009B8FEF /* Info.plist */,
 			);
@@ -302,6 +305,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F55B8A95223E26A000839547 /* MapViewControllerTests.swift in Sources */,
+				F5B04075223E52B10054F18D /* VehicleDetailViewTests.swift in Sources */,
 				F53F2F36223A532A009B8FEF /* MapApiServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
