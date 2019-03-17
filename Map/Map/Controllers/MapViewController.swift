@@ -11,7 +11,7 @@ import MapKit
 class MapViewController: UIViewController {
     
     // MARK: - Properties
-    let activityIndicator = UIActivityIndicatorView(style: .gray)
+    let activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
     var selectedAnnotation : VehicleAnnotation?
     let apiService: MapServiceProtocol = MapService()
     
@@ -31,17 +31,24 @@ class MapViewController: UIViewController {
     fileprivate func setupView() {
         
         // Add activity Indicator
-        activityIndicator.center = self.view.center
         activityIndicator.hidesWhenStopped = true
+        activityIndicator.frame = CGRect(origin: self.view.center, size: CGSize(width: 80, height: 80))
+        activityIndicator.center = self.view.center
+        activityIndicator.layer.cornerRadius = 10
+        activityIndicator.backgroundColor = Constants.blackColor
+        
         self.view.addSubview(activityIndicator)
     }
    fileprivate func showActivityIndicator(){
         DispatchQueue.main.async {
+            self.view.isUserInteractionEnabled = false
             self.activityIndicator.startAnimating()
         }
     }
    fileprivate func hideActivityIndicator(){
         DispatchQueue.main.async {
+            self.view.isUserInteractionEnabled = true
+
             self.activityIndicator.stopAnimating()
         }
     }
@@ -155,7 +162,6 @@ extension MapViewController : MKMapViewDelegate {
         if selectedAnnotation == annotation {
             
             selectedAnnotation=nil
-            
         }
         else{
             // Fetch the details of selected vehicle
