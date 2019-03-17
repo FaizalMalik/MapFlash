@@ -92,7 +92,9 @@ class MapViewController: UIViewController {
             //Creating array of vehicle annotation to plot pin on map
             let vehiclesArray = vehicles.map({return VehicleAnnotation(vehicle: $0)})
             
-            self.addAnnotations(forVehilces: vehiclesArray)
+            self.addAnnotations(forVehilces: vehiclesArray, completion: {
+            
+            })
             
         }
         
@@ -199,7 +201,7 @@ extension MapViewController : MKMapViewDelegate {
         
     }
     
-    private func addAnnotations(forVehilces vehiclesAnnotationArray:[VehicleAnnotation]) {
+    func addAnnotations(forVehilces vehiclesAnnotationArray:[VehicleAnnotation],completion: @escaping ()->()) {
         DispatchQueue.main.async {
             if  vehiclesAnnotationArray.count > 0 && (self.mapView != nil){
             //Set the first pin as center
@@ -209,9 +211,10 @@ extension MapViewController : MKMapViewDelegate {
                
                 
                 self.mapView.addAnnotation(annotation)
+                
             }
             
-            
+            completion()
         }
     }
     }

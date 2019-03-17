@@ -7,6 +7,8 @@
 //
 
 import XCTest
+import Foundation
+
 @testable import Map
 
 class VehicleDetailViewTests: XCTestCase {
@@ -30,14 +32,18 @@ class VehicleDetailViewTests: XCTestCase {
     }
 
     func testBindData() {
-        //Expecting the Vehicles details pop up showing same data as we provide 
         // given
-        let testBundle = Bundle(for: type(of: self))
-        let path = testBundle.path(forResource: "Sample", ofType: "json")
-        let data = try? Data(contentsOf: URL(fileURLWithPath: path!), options: .alwaysMapped)
+        //Expecting the Vehicles details pop up showing same data as we provide
+
+        guard let data = FileManager.readJson(forResource: "Sample") else {
+            XCTAssert(false, "Can't get data from sample.json")
+            return
+        }
+        
+    
         do {
             // when
-            let vehiclesArray = try JSONDecoder().decode([Vehicle].self, from: data!)
+            let vehiclesArray = try JSONDecoder().decode([Vehicle].self, from: data)
             
             //Selecting a random element considered as selected vehicle
             let dummyVehicle = vehiclesArray.randomElement()
@@ -55,6 +61,7 @@ class VehicleDetailViewTests: XCTestCase {
 
         } catch _ {
             XCTFail("Failed to decode:")
+            
         }
         
     }

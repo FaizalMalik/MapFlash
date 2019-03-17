@@ -7,16 +7,22 @@
 //
 
 import XCTest
+import MapKit
+
 @testable import Map
 
-class MapTests: XCTestCase {
+class MapViewControllerTests: XCTestCase {
+    
     var controllerUnderTest: MapViewController!
-
+    var testMap : MKMapView?
+    
     override func setUp() {
           super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
         controllerUnderTest = MapViewController()
+        testMap = MKMapView()
         
+        controllerUnderTest.mapView = testMap
     }
 
     override func tearDown() {
@@ -37,9 +43,50 @@ class MapTests: XCTestCase {
         XCTAssertNotEqual(String(describing: popupView), "VehicleDetailView", "Wrong Identifier")
     }
     
-    func testRemovePopupViewMethod(){
+    func testAddAnnotationMethod(){
+   
+        /*This method is for Testing that Adding notation to Map is working correctly,
+        for that we inject six dummy data as annotation array
+         */
+        guard let data = FileManager.readJson(forResource: "Sample") else {
+            XCTAssert(false, "Can't get data from sample.json")
+            return
+        }
         
-        
+        do {
+           
+            // given
+            let promise = expectation(description: "controllerUnderTest.mapView annotation count will be six")
+            
+            let dummyVehiclesArray = try JSONDecoder().decode([Vehicle].self, from: data)
+            
+            //Setting dummy map as sut map
+            controllerUnderTest.mapView = testMap
+            
+           let dummyAnnotationArray = dummyVehiclesArray.map({return VehicleAnnotation(vehicle: $0)})
+            
+            //When
+            controllerUnderTest.addAnnotations(forVehilces: dummyAnnotationArray) {
+                
+                //then
+                
+                XCTAssertEqual(self.controllerUnderTest.mapView.annotations.count, dummyAnnotationArray.count,"Mapview added annotation count not same as injected annotation count")
+                
+                promise.fulfill()
+           }
+            
+            
+            
+
+            
+            
+            
+        } catch _ {
+            XCTFail("Failed to decode:")
+            
+        }
+            
+          waitForExpectations(timeout: 5, handler: nil)
     }
 
     func testFetchVehicleDetailsMethod(){
@@ -70,4 +117,22 @@ class MapTests: XCTestCase {
     
     
     
+}
+
+extension FileManager {
+    
+    static func readJson(forResource fileName: String ) -> Data? {
+        
+        let bundle = Bundle(for: MapViewControllerTests.self)
+        if let path = bundle.path(forResource: fileName, ofType: "json") {
+            do {
+                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+                return data
+            } catch {
+                // handle error
+            }
+        }
+        
+        return nil
+    }
 }
