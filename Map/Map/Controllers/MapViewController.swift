@@ -8,7 +8,7 @@
 import UIKit
 import MapKit
 
-class ViewController: UIViewController {
+class MapViewController: UIViewController {
     
     // MARK: - Properties
     let activityIndicator = UIActivityIndicatorView(style: .gray)
@@ -111,7 +111,7 @@ class ViewController: UIViewController {
 }
 
 
-extension ViewController : MKMapViewDelegate {
+extension MapViewController : MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         guard annotation is VehicleAnnotation else { return nil }

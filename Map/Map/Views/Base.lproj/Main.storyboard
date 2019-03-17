@@ -13,7 +13,7 @@
         <!--Flash-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Map" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MapViewController" customModule="Map" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -21,7 +21,7 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="pMl-VK-a6H">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <connections>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="JRv-cV-5tZ"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="zEO-wx-syo"/>
                                 </connections>
                             </mapView>
                         </subviews>
@@ -36,7 +36,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Flash" id="Qyc-Tb-Jwf"/>
                     <connections>
-                        <outlet property="mapView" destination="pMl-VK-a6H" id="Mlf-ZC-SNN"/>
+                        <outlet property="mapView" destination="pMl-VK-a6H" id="LQN-s6-ajc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
