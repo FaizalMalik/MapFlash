@@ -201,7 +201,7 @@ extension MapViewController : MKMapViewDelegate {
     
     private func addAnnotations(forVehilces vehiclesAnnotationArray:[VehicleAnnotation]) {
         DispatchQueue.main.async {
-        if  vehiclesAnnotationArray.count > 0 {
+            if  vehiclesAnnotationArray.count > 0 && (self.mapView != nil){
             //Set the first pin as center
             self.centerMap(on: vehiclesAnnotationArray[0].coordinate)
             
